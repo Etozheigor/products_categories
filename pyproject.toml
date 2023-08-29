@@ -21,7 +21,6 @@ djangorestframework-simplejwt = "^5.2.2"
 flake8 = "^6.1.0"
 flake8-isort = "^6.0.0"
 black = "^23.7.0"
-django-cleanup = "^8.0.0"
 django-filter = "^23.2"
 
 

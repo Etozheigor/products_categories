@@ -341,18 +341,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-cleanup"
-version = "8.0.0"
-description = "Deletes old files."
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-cleanup-8.0.0.tar.gz", hash = "sha256:c739a05544e1e48dc848871c870dbf1595f8533d24523bc67360e43562edaf0d"},
-    {file = "django_cleanup-8.0.0-py2.py3-none-any.whl", hash = "sha256:8cd8872d67fe1501b19a843d006cdb5673cfbb74ac3d6d8f2c60e8e7723a7f5b"},
-]
-
-[[package]]
 name = "django-debug-toolbar"
 version = "4.2.0"
 description = "A configurable set of panels that display various debug information about the current request/response."
@@ -1114,4 +1102,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "22271603c6c8bcb5ddd42420de7c78d9a1c1c00f2edc926890730e279efd3497"
+content-hash = "db9611a35fcd3b042344dcc7095e0bad23de588cb613bd73067e324c581a5625"
