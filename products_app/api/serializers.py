@@ -14,8 +14,8 @@ class CategorySerializer(serializers.ModelSerializer):
 class ProductReadSerializer(serializers.ModelSerializer):
     """Сериализатор для модели продуктов."""
 
-    category_id = serializers.ReadOnlyField(source="category.id")
-    category_name = serializers.ReadOnlyField(source="category.name")
+    categories_id = serializers.SerializerMethodField()
+    categories_names = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
@@ -25,9 +25,15 @@ class ProductReadSerializer(serializers.ModelSerializer):
             "price",
             "is_published",
             "is_deleted",
-            "category_id",
-            "category_name",
+            "categories_id",
+            "categories_names",
         )
+
+    def get_categories_id(self, obj):
+        return [category.id for category in obj.categories.all()]
+
+    def get_categories_names(self, obj):
+        return [category.name for category in obj.categories.all()]
 
 
 class ProductWriteSerializer(serializers.ModelSerializer):
@@ -43,6 +49,13 @@ class ProductWriteSerializer(serializers.ModelSerializer):
             "price",
             "categories",
         )
+
+    def validate(self, data):
+        if data.get('categories'):
+            if not 1 < len(data['categories']) < 11:
+                raise serializers.ValidationError(
+                    'У продукта должно быть от 2 до 10 категорий')
+        return data
 
     def create(self, validated_data):
         categories = validated_data.pop("categories")
