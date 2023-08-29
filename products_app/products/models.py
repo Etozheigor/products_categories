@@ -18,9 +18,6 @@ class Product(models.Model):
     name = models.CharField(verbose_name='Имя', max_length=50, unique=True)
     description = models.CharField(verbose_name='Описание', max_length=100)
     price = models.FloatField(verbose_name='Цена')
-    image = models.ImageField(
-        'Картинка', blank=True, null=True, upload_to='products_images'
-    )
     is_published = models.BooleanField(
         verbose_name='Опубликован ли товар', default=False
     )
