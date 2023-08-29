@@ -8,7 +8,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ("name", "description")
+        fields = ('name', 'description')
 
 
 class ProductReadSerializer(serializers.ModelSerializer):
@@ -20,13 +20,13 @@ class ProductReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            "name",
-            "description",
-            "price",
-            "is_published",
-            "is_deleted",
-            "categories_id",
-            "categories_names",
+            'name',
+            'description',
+            'price',
+            'is_published',
+            'is_deleted',
+            'categories_id',
+            'categories_names',
         )
 
     def get_categories_id(self, obj):
@@ -44,10 +44,10 @@ class ProductWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-            "name",
-            "description",
-            "price",
-            "categories",
+            'name',
+            'description',
+            'price',
+            'categories',
         )
 
     def validate(self, data):
@@ -58,14 +58,14 @@ class ProductWriteSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        categories = validated_data.pop("categories")
+        categories = validated_data.pop('categories')
         product = Product.objects.create(**validated_data)
         product.categories.set(categories)
         product.save()
         return product
 
     def update(self, instance, validated_data):
-        if validated_data.get("categories"):
-            categories = validated_data.pop("categories")
+        if validated_data.get('categories'):
+            categories = validated_data.pop('categories')
             instance.categories.set(categories)
         return super().update(instance, validated_data)

@@ -21,8 +21,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
         if category.products.count() > 0:
             return Response(
                 {
-                    "error": "Невозможно удалить объект, так как"
-                    "есть продукты, относящиеся к этой категории."
+                    'error': 'Невозможно удалить объект, так как'
+                    'есть продукты, относящиеся к этой категории.'
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
@@ -39,7 +39,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_fields = ('name', 'is_published', 'is_deleted')
 
     def get_serializer_class(self):
-        if self.action in ("list", "retrieve"):
+        if self.action in ('list', 'retrieve'):
             return ProductReadSerializer
         return ProductWriteSerializer
 
